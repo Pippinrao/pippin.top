@@ -21,4 +21,5 @@ app_name = 'note'
 
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
+    path('create/', views.Create.as_view(), name='create'),
 ]

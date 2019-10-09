@@ -12,3 +12,11 @@ class Home(View):
             "notes": notes,
         }
         return render(request, "note/list.html", context)
+
+
+class Create(View):
+    def get(self, request):
+        return render(request, "note/create.html", )
+
+    def post(self, request):
+        pass
