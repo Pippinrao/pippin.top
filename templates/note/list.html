@@ -12,29 +12,16 @@
     {% for note in notes %}
         <div class="col-12">
             <h4>
-                {% if note.category %}
-                    <button type="button"
-                        class="btn btn-sm mb-2
-                            {% if note.category.title == 'Test' %}
-                                btn-success
-                            {% elif note.category.title == 'Java' %}
-                                btn-danger
-                            {% elif note.category.title == 'HTML' %}
-                                btn-warning
-                            {% endif %}
-                        "
-                    >
+                    <button type="button" class="btn btn-sm mb-2 btn-info" >
                         {{ note.category }}
                     </button>
-                {% endif %}
                 <b>
-                    <a href="#"
+                    <a href="{% url 'note:detail'  note.id%}"
                        style="color: black;"
                     >
                         {{ note.title }}
                     </a>
                 </b>
-                <span class="badge badge-primary">2</span>
             </h4>
 
             <div>

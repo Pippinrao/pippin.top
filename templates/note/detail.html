@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    {{ note.title }}
+{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-12">
+            <h2 style="text-align: left">{{ note.title }}</h2>
+            <p>
+                <span>
+                    作者：{{ note.author }}
+                </span>
+                <span style="color: blue;">
+                    {{ note.created|date:'Y-m-d' }} 发布&nbsp;&nbsp;&nbsp;
+                </span>
+                <span style="color: darkred;">
+                    {{ note.updated|date:'Y-m-d' }} 更新
+                </span>
+                {% if note.tag %}
+                    {% for tag in note.tag.all %}
+                        <button class="btn btn-sm btn-info">
+                            <span class="fa fa-tag"></span> {{ tag }}
+                        </button>
+                    {% endfor %}
+                {% endif %}
+            </p>
+            <div>
+                <p>
+                {{ note.body|safe }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
