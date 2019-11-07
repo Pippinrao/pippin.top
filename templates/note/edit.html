@@ -56,7 +56,7 @@
                     {% for tag in tags %}
                         <span style="color: grey; font-size: small; display:inline">
                            <span class="fa fa-tag"></span>  {{ tag }}
-                            <a href="#"><span class="fa fa-close"></span></a>
+                            <a href="#" onclick="rm_tag({{ tag.id }})"><span class="fa fa-close"></span></a>
                        </span>
                     {% endfor %}
                     {% endif %}
@@ -116,6 +116,35 @@ function add_tag(){
     });
 }
 
+function rm_tag(tag_id) {
+    layer.open({
+        // 弹窗标题
+        title: "确认删除",
+        // 正文
+        content: "确认删除这个Tag吗？",
+        // 点击确定按钮后调用的回调函数
+        btn: ['删除', '取消'],
+        yes: function(index, layero) {
+            // 指定应当前往的 url
+        $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+        });
+        $.ajax({
+            url: "{% url 'note:rm_something' note.id %}",
+            type: 'post',
+            data:{
+                'tag_id': tag_id,
+            },
+        });
+        async: true,
+        layer.close(index)
+        layer.msg('删除成功');
+        },
+        function(){
+            layer.close()
+        }
+    })
+}
 </script>
 
 {% endblock content %}

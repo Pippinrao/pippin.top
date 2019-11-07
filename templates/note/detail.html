@@ -10,7 +10,13 @@
 <div class="container">
     <div class="row mt-2">
         <div class="col-12">
-            <h2 style="text-align: left">{{ note.title }}</h2>
+            <h2 style="text-align: left">{{ note.title }}
+                <button class="btn btn-sm btn-info" >
+                    <a style="color: white" href="{% url 'note:edit'  note.id%}">编辑</a>
+                    </button>
+                <button class="btn btn-sm btn-danger"  onclick='confirm_delete()'>删除</button>
+            </h2>
+
             <p>
                 <span>
                     作者：{{ note.author }}
@@ -19,13 +25,13 @@
                     {{ note.created|date:'Y-m-d' }} 发布&nbsp;&nbsp;&nbsp;
                 </span>
                 <span style="color: darkred;">
-                    {{ note.updated|date:'Y-m-d' }} 更新
+                    {{ note.updated|date:'Y-m-d' }} 更新&nbsp;&nbsp;&nbsp;
                 </span>
                 {% if note.tag %}
                     {% for tag in note.tag.all %}
-                        <button class="btn btn-sm btn-info">
+                        <span style="color: grey; font-size: small">
                             <span class="fa fa-tag"></span> {{ tag }}
-                        </button>
+                        </span>
                     {% endfor %}
                 {% endif %}
             </p>
@@ -38,4 +44,29 @@
     </div>
 </div>
 
+<script>
+    // 删除文章的函数
+    function confirm_delete() {
+        // 调用layer弹窗组件
+        layer.open({
+            // 弹窗标题
+            title: "确认删除",
+            // 正文
+            content: "确认删除这篇文章吗？",
+            // 点击确定按钮后调用的回调函数
+            btn: ['删除', '取消'],
+            yes: function(index, layero) {
+                // 指定应当前往的 url
+                layer.msg('已删除')
+                location.href='{% url "note:delete" note.id %}'
+            },
+            function(){
+                layer.close()
+            }
+        })
+    }
+</script>
+
 {% endblock content %}
+
+

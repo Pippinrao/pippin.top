@@ -34,13 +34,13 @@
                     {{ note.created|date:'Y-m-d' }} 发布&nbsp;&nbsp;&nbsp;
                 </span>
                 <span style="color: darkred;">
-                    {{ note.updated|date:'Y-m-d' }} 更新
+                    {{ note.updated|date:'Y-m-d' }} 更新&nbsp;&nbsp;&nbsp;
                 </span>
                 {% if note.tag %}
                     {% for tag in note.tag.all %}
-                        <button class="btn btn-sm btn-info">
-                            <span class="fa fa-tag"></span> {{ tag }}
-                        </button>
+                       <span style="color: grey; font-size: small">
+                           <span class="fa fa-tag"></span>  {{ tag }}
+                       </span>
                     {% endfor %}
                 {% endif %}
             </p>

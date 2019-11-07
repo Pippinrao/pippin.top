@@ -23,4 +23,8 @@ urlpatterns = [
     path('', views.Home.as_view(), name='home'),
     path('create/', views.Create.as_view(), name='create'),
     path('detail/<int:id>/', views.Detail.as_view(), name='detail'),
+    path('edit/<int:id>/', views.Edit.as_view(), name='edit'),
+    path('delete/<int:id>/', views.Delete.as_view(), name='delete'),
+    path('add-something/<int:id>/', views.Add_something.as_view(), name='add_something'),
+    path('rm-something/<int:id>/', views.Rm_something.as_view(), name='rm_something'),
 ]
