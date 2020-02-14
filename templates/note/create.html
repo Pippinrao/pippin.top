@@ -48,7 +48,7 @@
 
                             {% endfor %}
                         </select>&nbsp&nbsp
-                        <a href="#" onclick="add_category()" style="display: inline"><span class="fa fa-plus-square"></span> 添加分类</a>
+                        <a href="#"  style="display: inline"><span class="fa fa-plus-square"></span> 添加分类</a>
                 </div>
                 <div class="form-group">
                     <label for="tag" style="display: inline">标签：</label>
@@ -60,7 +60,7 @@
                        </span>
                     {% endfor %}
                     {% endif %}
-                    <a href="#" onclick="add_tag()" style="display: inline"><span class="fa fa-plus-square"></span> 添加标签</a>
+                    <a href="#"  style="display: inline"><span class="fa fa-plus-square"></span> 添加标签</a>
                 </div>
                 <button class="btn btn-primary" type="submit">完成</button>
             </form>
@@ -70,52 +70,52 @@
 </div>
 
 
-<script>
-
-function add_category(){
-    layer.prompt({
-        formType: 2,
-        title: '添加新分类'
-        }, function(value, index){
-        $.ajaxSetup({
-            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-        });
-        $.ajax({
-            url: "{% url 'note:add_something' note.id %}",
-            type: 'post',
-            data:{
-                'flag': 'category',
-                'title': value,
-            },
-        });
-        async: true,
-        layer.close(index);
-        layer.alert('添加成功');
-    });
-}
-
-function add_tag(){
-    layer.prompt({
-        formType: 2,
-        title: '添加新标签'
-        }, function(value, index){
-        $.ajaxSetup({
-            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-        });
-        $.ajax({
-            url: "{% url 'note:add_something' note.id %}",
-            type: 'post',
-            data:{
-                'flag': 'tag',
-                'title': value,
-            },
-        });
-        async: true,
-        layer.close(index);
-        layer.alert('添加成功');
-    });
-}
-
-</script>
+{#<script>#}
+{##}
+{#function add_category(){#}
+{#    layer.prompt({#}
+{#        formType: 2,#}
+{#        title: '添加新分类'#}
+{#        }, function(value, index){#}
+{#        $.ajaxSetup({#}
+{#            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },#}
+{#        });#}
+{#        $.ajax({#}
+{#            url: "{% url 'note:add_something' note.id %}",#}
+{#            type: 'post',#}
+{#            data:{#}
+{#                'flag': 'category',#}
+{#                'title': value,#}
+{#            },#}
+{#        });#}
+{#        async: true,#}
+{#        layer.close(index);#}
+{#        layer.alert('添加成功');#}
+{#    });#}
+{#}#}
+{##}
+{#function add_tag(){#}
+{#    layer.prompt({#}
+{#        formType: 2,#}
+{#        title: '添加新标签'#}
+{#        }, function(value, index){#}
+{#        $.ajaxSetup({#}
+{#            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },#}
+{#        });#}
+{#        $.ajax({#}
+{#            url: "{% url 'note:add_something' note.id %}",#}
+{#            type: 'post',#}
+{#            data:{#}
+{#                'flag': 'tag',#}
+{#                'title': value,#}
+{#            },#}
+{#        });#}
+{#        async: true,#}
+{#        layer.close(index);#}
+{#        layer.alert('添加成功');#}
+{#    });#}
+{#}#}
+{##}
+{#</script>#}
 
 {% endblock content %}
